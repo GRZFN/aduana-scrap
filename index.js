@@ -1,10 +1,13 @@
 const express = require('express');
+const cors = require('cors');           // Importa cors
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const app = express(); // CREA EL SERVIDOR
+const app = express();
 
-// Ruta para scrapear los lotes de la tabla con ID #operativos
+app.use(cors());  // Habilita CORS para todas las rutas
+
+// Tus rutas aquí
 app.get('/aduana-operativos', async (req, res) => {
   const url = 'http://anbsw04.aduana.gob.bo:7551/subastas/lotelista.do?parameter=initpage';
 
@@ -33,6 +36,6 @@ app.get('/aduana-operativos', async (req, res) => {
   }
 });
 
-// Inicia el servidor
+// Inicia servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Servidor activo en http://localhost:${PORT}`));
